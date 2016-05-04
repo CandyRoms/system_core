@@ -85,6 +85,7 @@ LOCAL_STATIC_LIBRARIES := \
     libext4_utils_static \
     libext2_blkid \
     libext2_uuid_static \
+    libext2_uuid \
     libc++_static \
     libdl \
     libsparse_static \
