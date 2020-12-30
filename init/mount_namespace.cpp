@@ -148,12 +148,12 @@ static Result<void> ActivateFlattenedApexesFrom(const std::string& from_dir,
     std::sort(entries.begin(), entries.end());
     for (const auto& name : entries) {
         const std::string apex_path = from_dir + "/" + name;
-        const auto apex_manifest = GetApexManifest(apex_path);
-        if (!apex_manifest.ok()) {
-            LOG(ERROR) << apex_path << " is not an APEX directory: " << apex_manifest.error();
+        const auto apex_name = GetApexName(apex_path);
+        if (!apex_name.ok()) {
+            LOG(ERROR) << apex_path << " is not an APEX directory: " << apex_name.error();
             continue;
         }
-        const std::string mount_path = to_dir + "/" + apex_manifest->name();
+        const std::string mount_path = to_dir + "/" + (*apex_name);
         if (auto result = MountDir(apex_path, mount_path); !result.ok()) {
             return result;
         }
